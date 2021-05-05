@@ -9,7 +9,14 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:nuxt/recommended',
   ],
-  plugins: [],
+  plugins: ['prettier'],
   // add your custom rules here
   rules: {},
+  parserOptions: {
+    parser: 'babel-eslint',
+    ecmaVersion: 6,
+    ecmaFeatures: {
+      legacyDecorators: true,
+    },
+  },
 }
