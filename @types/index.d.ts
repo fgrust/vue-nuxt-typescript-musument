@@ -12,3 +12,8 @@ export interface IRetailPrice {
   value: number
   formattedValue: string
 }
+
+export interface IFetchParam {
+  limit: number
+  offset: number
+}

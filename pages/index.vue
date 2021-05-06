@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container fluid="lg" class="py-5 px-md-3">
     <b-alert
       v-model="error"
       class="position-fixed fixed-top m-0 rounded-0"
@@ -8,28 +8,35 @@
     >
       Server Error Occurs!
     </b-alert>
-    <b-row>
+    <b-row cols-md="3" cols="1">
       <b-col v-for="product in products" :key="product.uuid">
-        {{ product.title }}
+        <card :product="product" />
       </b-col>
     </b-row>
+    <b-pagination
+      v-model="currentPage"
+      :total-rows="60"
+      :per-page="6"
+      first-text="<<"
+      last-text=">>"
+      prev-text="<"
+      next-text=">"
+      align="center"
+    />
   </b-container>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
-import { IProductItem } from '~/@types'
+import { Vue, Component, Watch } from 'nuxt-property-decorator'
+import Card from '~/components/Card.vue'
+import { IProductItem, IFetchParam } from '~/@types'
 
-interface IFetchParam {
-  limit: number
-  offset: number
-}
-
-@Component
+@Component({ components: { Card } })
 export default class HomePage extends Vue {
   error: boolean = false
   loading: boolean = false
   products: Array<IProductItem> = []
+  currentPage: number = 1
 
   async fetchData(params: IFetchParam) {
     this.loading = true
@@ -48,38 +55,10 @@ export default class HomePage extends Vue {
   mounted() {
     this.fetchData({ limit: 6, offset: 0 })
   }
+
+  @Watch('currentPage')
+  onChangePage(val: number) {
+    this.fetchData({ limit: 6, offset: val - 1 })
+  }
 }
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
