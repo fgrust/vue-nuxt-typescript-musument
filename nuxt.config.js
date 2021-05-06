@@ -45,7 +45,32 @@ export default {
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extend(config) {
+      const urlloader = config.module.rules.find((rule) => {
+        if (rule) {
+          if (rule.loader && rule.loader.includes('url-loader')) {
+            return true
+          }
+
+          if (
+            rule.use &&
+            rule.use.find((item) => item.loader.includes('url-loader'))
+          ) {
+            return true
+          }
+        }
+
+        return false
+      })
+      urlloader.test = /\.(png|jpe?g|gif|webp|avif)$/i
+      config.module.rules.push({
+        test: /\.svg$/,
+        loader: 'svg-inline-loader',
+        exclude: /node_modules/,
+      })
+    },
+  },
 
   // Runtime Configuration
   publicRuntimeConfig: {
