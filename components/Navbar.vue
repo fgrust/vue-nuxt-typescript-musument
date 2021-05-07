@@ -1,6 +1,10 @@
 <template>
   <b-navbar toggleable="md" type="dark">
-    <b-navbar-brand href="https://www.jagaad.it" target="__blank">
+    <b-navbar-brand
+      href="https://www.jagaad.it"
+      target="__blank"
+      class="navbar-brand"
+    >
       <img
         src="~assets/images/jagaad.png"
         alt="Jagaad"
@@ -10,46 +14,46 @@
       Jagaad
     </b-navbar-brand>
 
-    <b-navbar-toggle target="nav-collapse" />
+    <!-- <b-navbar-toggle target="nav-collapse" /> -->
 
-    <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav class="ml-auto">
-        <b-nav-item-dropdown no-caret menu-class="p-0" right>
-          <template slot="button-content">
-            <div class="price-in-bag">
-              <span v-html="price" class="mr-1" />
-              <badge-icon
-                icon="bag"
-                :badge="`${countBag}`"
-                :no-badge="!countBag"
-              />
-            </div>
-          </template>
-
-          <menu-item
-            v-for="item in bag"
-            :key="item.uuid"
-            :product="item"
-            class="dropdown-menu-item"
-          />
-          <p
-            v-if="!(bag && bag.length)"
-            class="dropdown-menu-item__empty py-3 m-0 text-secondary"
-          >
-            (No Item)
-          </p>
-        </b-nav-item-dropdown>
-        <b-nav-item-dropdown no-caret>
-          <template slot="button-content">
+    <!-- <b-collapse is-nav> -->
+    <b-navbar-nav class="ml-auto">
+      <b-nav-item-dropdown no-caret menu-class="p-0" right>
+        <template slot="button-content">
+          <div class="price-in-bag">
+            <span v-html="price" class="mr-1" />
             <badge-icon
-              icon="favorite"
-              :badge="`${countWishlist}`"
-              :no-badge="!countWishlist"
+              icon="bag"
+              :badge="`${countBag}`"
+              :no-badge="!countBag"
             />
-          </template>
-        </b-nav-item-dropdown>
-      </b-navbar-nav>
-    </b-collapse>
+          </div>
+        </template>
+
+        <menu-item
+          v-for="item in bag"
+          :key="item.uuid"
+          :product="item"
+          class="dropdown-menu-item"
+        />
+        <p
+          v-if="!(bag && bag.length)"
+          class="dropdown-menu-item__empty py-3 m-0 text-secondary"
+        >
+          (No Item)
+        </p>
+      </b-nav-item-dropdown>
+      <b-nav-item-dropdown no-caret>
+        <template slot="button-content">
+          <badge-icon
+            icon="favorite"
+            :badge="`${countWishlist}`"
+            :no-badge="!countWishlist"
+          />
+        </template>
+      </b-nav-item-dropdown>
+    </b-navbar-nav>
+    <!-- </b-collapse> -->
   </b-navbar>
 </template>
 
@@ -81,6 +85,9 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .navbar {
   background-color: #249fe3;
+}
+.navbar-brand {
+  font-size: 1.7rem;
 }
 .price-in-bag {
   display: flex;

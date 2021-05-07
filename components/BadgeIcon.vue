@@ -38,8 +38,8 @@ export default Vue.extend({
   .icon {
     fill: #464c52;
     transition: 0.3s fill;
-    height: 32px;
-    width: 32px;
+    height: 24px;
+    width: 24px;
   }
 
   &:hover > .icon {
