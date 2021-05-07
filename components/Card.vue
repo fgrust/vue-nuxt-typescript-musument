@@ -6,7 +6,7 @@
     :title="product.title"
     class="mb-3"
   >
-    <b-card-text v-html="product.description" />
+    <b-card-text v-html="product.description" class="product-description" />
     <b-card-text class="text-center price">
       <span
         v-if="isDiscount"
@@ -82,6 +82,30 @@ export default class Card extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+.card-body {
+  text-align: center;
+
+  .card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+  }
+
+  .card-text.product-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.2rem;
+  }
+}
+</style>
 
 <style lang="scss" scoped>
 .stroke-text {
