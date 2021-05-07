@@ -14,7 +14,7 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav class="ml-auto">
-        <b-nav-item-dropdown no-caret>
+        <b-nav-item-dropdown no-caret menu-class="p-0" right>
           <template slot="button-content">
             <div class="price-in-bag">
               <span v-html="price" class="mr-1" />
@@ -25,6 +25,19 @@
               />
             </div>
           </template>
+
+          <menu-item
+            v-for="item in bag"
+            :key="item.uuid"
+            :product="item"
+            class="dropdown-menu-item"
+          />
+          <p
+            v-if="!(bag && bag.length)"
+            class="dropdown-menu-item__empty py-3 m-0 text-secondary"
+          >
+            (No Item)
+          </p>
         </b-nav-item-dropdown>
         <b-nav-item-dropdown no-caret>
           <template slot="button-content">
@@ -44,14 +57,16 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import BadgeIcon from './BadgeIcon.vue'
+import MenuItem from './MenuItem.vue'
 
 export default Vue.extend({
   components: {
     BadgeIcon,
+    MenuItem,
   },
 
   computed: {
-    ...mapGetters(['priceInBag', 'countBag', 'countWishlist']),
+    ...mapGetters(['priceInBag', 'countBag', 'countWishlist', 'bag']),
 
     price() {
       return new Intl.NumberFormat('en-EN', {
@@ -73,6 +88,14 @@ export default Vue.extend({
 
   & > span {
     color: #eee;
+  }
+}
+.dropdown-menu-item {
+  width: 320px;
+
+  &__empty {
+    text-align: center;
+    background-color: #efefef;
   }
 }
 </style>

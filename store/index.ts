@@ -24,6 +24,8 @@ export const mutations = {
 }
 
 export const getters = {
+  bag: (state: IState) => state.bag,
+
   priceInBag: (state: IState) =>
     state.bag.reduce((s, item) => s + item.price, 0),
 
