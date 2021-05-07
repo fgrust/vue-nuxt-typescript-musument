@@ -17,14 +17,22 @@
         <b-nav-item-dropdown no-caret>
           <template slot="button-content">
             <div class="price-in-bag">
-              <span v-html="`&euro; ${priceInBag}`" class="mr-1" />
-              <badge-icon icon="bag" badge="10" />
+              <span v-html="price" class="mr-1" />
+              <badge-icon
+                icon="bag"
+                :badge="`${countBag}`"
+                :no-badge="!countBag"
+              />
             </div>
           </template>
         </b-nav-item-dropdown>
         <b-nav-item-dropdown no-caret>
           <template slot="button-content">
-            <badge-icon icon="favorite" badge="3" no-badge />
+            <badge-icon
+              icon="favorite"
+              :badge="`${countWishlist}`"
+              :no-badge="!countWishlist"
+            />
           </template>
         </b-nav-item-dropdown>
       </b-navbar-nav>
@@ -34,6 +42,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 import BadgeIcon from './BadgeIcon.vue'
 
 export default Vue.extend({
@@ -41,9 +50,16 @@ export default Vue.extend({
     BadgeIcon,
   },
 
-  data: () => ({
-    priceInBag: 324,
-  }),
+  computed: {
+    ...mapGetters(['priceInBag', 'countBag', 'countWishlist']),
+
+    price() {
+      return new Intl.NumberFormat('en-EN', {
+        style: 'currency',
+        currency: 'EUR',
+      }).format(this.priceInBag)
+    },
+  },
 })
 </script>
 

@@ -30,7 +30,7 @@
       block
       :disabled="isinb"
       @click="addToCart"
-      >{{ isInBag ? 'IN CART' : 'ADD TO CART' }}</b-button
+      >{{ isinb ? 'IN CART' : 'ADD TO CART' }}</b-button
     >
   </b-card>
 </template>
