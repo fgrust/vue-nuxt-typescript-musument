@@ -38,6 +38,11 @@ export default class HomePage extends Vue {
   products: Array<IProductItem> = []
   currentPage: number = 1
 
+  // Implementation SSR
+  async fetch() {
+    await this.fetchData({ limit: 6, offset: 0 })
+  }
+
   async fetchData(params: IFetchParam) {
     this.loading = true
     try {
@@ -50,10 +55,6 @@ export default class HomePage extends Vue {
     } finally {
       this.loading = false
     }
-  }
-
-  mounted() {
-    this.fetchData({ limit: 6, offset: 0 })
   }
 
   @Watch('currentPage')
