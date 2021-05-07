@@ -32,4 +32,8 @@ export const getters = {
 
   isInBag: (state: IState) => (uuid: string) =>
     state.bag.some((item) => item.uuid === uuid),
+
+  countBag: (state: IState) => state.bag.length,
+
+  countWishlist: (state: IState) => state.wishlist.length,
 }
