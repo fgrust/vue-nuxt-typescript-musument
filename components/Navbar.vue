@@ -18,11 +18,17 @@
 
     <!-- <b-collapse is-nav> -->
     <b-navbar-nav class="ml-auto">
-      <b-nav-item-dropdown no-caret menu-class="p-0" right>
+      <b-nav-item-dropdown
+        data-testid="tg__cart"
+        no-caret
+        menu-class="p-0"
+        right
+      >
         <template slot="button-content">
           <div class="price-in-bag">
-            <span v-html="price" class="mr-1" />
+            <span class="mr-1">{{ price }}</span>
             <badge-icon
+              data-testid="ic__cart"
               icon="bag"
               :badge="`${countBag}`"
               :no-badge="!countBag"
@@ -46,6 +52,7 @@
       <b-nav-item-dropdown no-caret>
         <template slot="button-content">
           <badge-icon
+            data-testid="ic__wishlist"
             icon="favorite"
             :badge="`${countWishlist}`"
             :no-badge="!countWishlist"

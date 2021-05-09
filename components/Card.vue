@@ -19,12 +19,14 @@
       />
     </b-card-text>
     <favorite-button
+      data-testid="btn__add-to-wishlist"
       class="btn-favorite"
       :isActive="isinw"
       @click="toggleFavorite"
     />
 
     <b-button
+      data-testid="btn__add-to-cart"
       pill
       variant="outline-secondary"
       block
