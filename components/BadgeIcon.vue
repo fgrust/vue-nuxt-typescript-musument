@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <icon :name="icon" class="icon" />
-    <span v-if="!noBadge" v-html="badge" class="badge" />
+    <span v-if="!noBadge" class="badge">{{ badge }}</span>
   </div>
 </template>
 
