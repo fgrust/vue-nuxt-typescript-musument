@@ -1,35 +1,10 @@
 {
-  "env": {
-    "test": {
-      "presets": [
-        [
-          "@babel/preset-env",
-          {
-            "targets": {
-              "node": "current"
-            }
-          }
-        ]
-      ]
-    }
-  },
-  "plugins": [
+  "presets": [
     [
-      "@babel/plugin-proposal-private-methods",
+      "@babel/preset-env",
       {
-        "loose": true
-      }
-    ],
-    [
-      "@babel/plugin-proposal-private-property-in-object",
-      {
-        "loose": true
-      }
-    ],
-    [
-      "@babel/plugin-proposal-class-properties",
-      {
-        "loose": true
+        "loose": true,
+        "shippedProposals": true
       }
     ]
   ]

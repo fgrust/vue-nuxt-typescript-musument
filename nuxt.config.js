@@ -23,7 +23,10 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/vuex-persist', ssr: false }],
+  plugins: [
+    { src: '~/plugins/vuex-persist', ssr: false },
+    { src: '~/plugins/axios' },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -43,6 +46,10 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
   ],
+
+  bootstrapVue: {
+    icons: false,
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -69,6 +76,10 @@ export default {
         loader: 'svg-inline-loader',
         exclude: /node_modules/,
       })
+    },
+    babel: {
+      plugins: [['@babel/plugin-proposal-private-methods', { loose: true }]],
+      compact: true,
     },
   },
 
