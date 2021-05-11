@@ -10,6 +10,7 @@
 
 ## Libraries
 
+- [Node.js](https://nodejs.org/en/) - ^4.15.x
 - [NuxtJS](https://nuxtjs.org/) - ^2.15.3
 - [Bootstrap-Vue](https://bootstrap-vue.org) - ^2.21.3
 - [vuex-persist](https://github.com/championswimmer/vuex-persist) - ^3.1.3
@@ -24,6 +25,12 @@
 
 ```bash
 yarn install
+```
+
+### Environment variable
+You need to make `.env` file in the root directory and set `API_URL` variable
+```
+API_URL=https://api.musement.com/api/v3/venues/164/activities
 ```
 
 ### Run on Development
