@@ -1,4 +1,4 @@
-# Frontend Vue coding challenge
+# Vue, Nuxt, Tyoescript sample
 
 ## Table of Contents
 --------------------
@@ -88,6 +88,3 @@ docker build -t jagaad_vue .
 ```bash
 docker run -dp 3000:3000 jagaad_vue
 ```
-
-## Author
-[� Alik Ho �](aliklabe.buz@gmail.com)
